@@ -1,0 +1,4 @@
+name: GamesLib
+version: '${project.version}'
+main: de.maxwell.gameslib.GamesLib
+api-version: 1.19
