@@ -1,6 +1,8 @@
-package de.maxwell.gameslib;
+package de.maxwell.games.area;
 
-public class AreaException extends MinecraftMinigamesException {
+import de.maxwell.games.PluginException;
+
+public class AreaException extends PluginException {
 
     public AreaException(String message, Throwable throwable) {
         super(message, throwable);

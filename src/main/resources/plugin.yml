@@ -1,4 +1,4 @@
-name: GamesLib
+name: GamesPlugin
 version: '${project.version}'
-main: de.maxwell.gameslib.GamesLib
+main: de.maxwell.gameslib.GamesPlugin
 api-version: 1.19
