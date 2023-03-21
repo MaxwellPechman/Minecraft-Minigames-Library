@@ -16,6 +16,16 @@ public class Message implements ChatSegment {
     }
 
     @Override
+    public boolean hasBukkitColor() {
+        return false;
+    }
+
+    @Override
+    public boolean hasBukkitFormat() {
+        return false;
+    }
+
+    @Override
     public int length() {
         return this.message.length();
     }
