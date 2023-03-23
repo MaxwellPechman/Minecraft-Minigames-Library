@@ -2,18 +2,18 @@ package de.maxwell.games.player;
 
 import java.util.Objects;
 
-public class BooleanAttribute implements Attribute<Boolean> {
+public class CharacterAttribute implements Attribute<Character> {
 
     private final AttributeType type;
-    private final Boolean value;
+    private final Character value;
 
-    public BooleanAttribute(Boolean value) {
-        this.type = AttributeType.BOOLEAN;
+    public CharacterAttribute(Character value) {
+        this.type = AttributeType.CHAR;
         this.value = Objects.requireNonNull(value);
     }
 
     @Override
-    public Boolean getValue() {
+    public Character getValue() {
         return this.value;
     }
 

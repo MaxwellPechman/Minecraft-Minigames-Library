@@ -1,4 +1,5 @@
 package de.maxwell.games.chat;
 
-public class MessageHandler {
+public class MessageManager {
+
 }

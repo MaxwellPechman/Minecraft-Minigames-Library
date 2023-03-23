@@ -1,5 +1,4 @@
 package de.maxwell.games.chat;
 
-public class ChatCodes {
-
+public class MessageBuilder {
 }

@@ -3,65 +3,108 @@ package de.maxwell.games.player;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.UUID;
+import java.util.*;
 
-public class PlayerData implements Iterable<Attribute> {
+public class PlayerData implements Map<String, AttributeList> {
 
     private final UUID playerID;
-    private final ArrayList<Attribute> attributes;
+    private final Player player;
+    private final HashMap<String, AttributeList> attributeData;
+
+    public PlayerData(Player player) {
+        this(Objects.requireNonNull(player.getUniqueId()));
+    }
 
     public PlayerData(UUID playerID) {
-        this.playerID = playerID;
-        this.attributes = new ArrayList<>();
+        this.playerID = Objects.requireNonNull(playerID);
+        this.player = Bukkit.getPlayer(playerID);
+        this.attributeData = new HashMap<>();
+    }
+
+    public Map<String, AttributeList> getAttributeData() {
+        return this.attributeData;
     }
 
     public Player getPlayer() {
-        return Bukkit.getPlayer(this.playerID);
-    }
-
-    public String getPlayerName() {
-        return this.getPlayer().getName();
+        return this.player;
     }
 
     public UUID getPlayerID() {
         return this.playerID;
     }
 
-    public boolean hasValue(Attribute attribute) {
-        return this.attributes.contains(attribute);
+    public String getPlayerName() {
+        return this.player.getName();
     }
 
+    @Override
+    public int size() {
+        return this.attributeData.size();
+    }
+
+    @Override
     public boolean isEmpty() {
-        return this.attributes.isEmpty();
+        return this.attributeData.isEmpty();
     }
 
-    public Attribute getAttribute(int index) {
-        return this.attributes.get(index);
+    @Override
+    public boolean containsKey(Object key) {
+        return this.attributeData.containsKey(key);
     }
 
-    public void setAttributes(int index, Attribute attribute) {
-        this.attributes.set(index, attribute);
+    @Override
+    public boolean containsValue(Object value) {
+        return this.attributeData.containsValue(value);
     }
 
-    public void addAttribute(Attribute attribute) {
-        this.attributes.add(attribute);
+    @Override
+    public AttributeList get(Object key) {
+        return this.attributeData.get(key);
     }
 
-    public Attribute removeAttribute(int index) {
-        return this.attributes.remove(index);
+    @Nullable
+    @Override
+    public AttributeList put(String key, AttributeList value) {
+        return this.attributeData.put(key, value);
+    }
+
+    @Override
+    public AttributeList remove(Object key) {
+        return this.attributeData.remove(key);
+    }
+
+    @Override
+    public void putAll(@NotNull Map<? extends String, ? extends AttributeList> map) {
+        this.attributeData.putAll(map);
+    }
+
+    @Override
+    public void clear() {
+        this.attributeData.clear();
     }
 
     @NotNull
     @Override
-    public Iterator<Attribute> iterator() {
-        return this.attributes.iterator();
+    public Set<String> keySet() {
+        return this.attributeData.keySet();
+    }
+
+    @NotNull
+    @Override
+    public Collection<AttributeList> values() {
+        return this.attributeData.values();
+    }
+
+    @NotNull
+    @Override
+    public Set<Entry<String, AttributeList>> entrySet() {
+        return this.attributeData.entrySet();
     }
 
     @Override
     public String toString() {
-        return this.playerID.toString() + ", " + this.attributes;
+        return this.playerID.toString() + ", " + this.getPlayerName() + ", " + this.attributeData.toString();
     }
 }
